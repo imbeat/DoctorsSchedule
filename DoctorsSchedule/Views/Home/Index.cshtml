@@ -1,0 +1,48 @@
+﻿@using DoctorsSchedule.Models
+@model ScheduleViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Расписание</title>
+</head>
+<body>
+<div>
+    <h2>Расписание</h2>
+    <small>Наведите на прием, чтобы всплыла подсказка с точным временем приема.</small>
+    <br/>
+    <table>
+        @*цикл по времени от начала рабочего дня до конца рабочего дня с заданным интервалом (5 минут)*@
+        @for (var i = Model.DayStartTime; i < Model.DayFinishTime; i = i.Add(ScheduleEntryViewModel.TimeInterval))
+        {
+            <tr>
+                @*столбец часов*@
+                @if (i.Minutes == 0)
+                {
+                    <td class="hours" rowspan="12" style="height: 100px">@i.ToString("hh':'mm")</td>
+                }
+
+                @foreach (var scheduleColumnList in Model.ScheduleItems)
+                {
+                    // ищем прием начинающийся в текущее (по циклу) время
+                    var entry = scheduleColumnList.FirstOrDefault(x => x.StartTime == i);
+                    if (entry != null)
+                    {
+                        var title = string.Format("Прием с {0:hh':'mm} по {1:hh':'mm}", entry.StartTime, @entry.FinishTime);
+                        <td class="entry" rowspan="@entry.ColumnSpanFactor" title='@title'>@entry.Patient</td>
+                    }
+                    else
+                    {
+                        if (!scheduleColumnList.Any(x => x.Contains(i)))
+                        {
+                            <td class="empty"></td>
+                        }
+                    }
+                }
+            </tr>
+        }
+    </table>
+</div>
+</body>
+</html>
+<link rel="stylesheet" href="/Content/Schedule.css">

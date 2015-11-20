@@ -1,0 +1,23 @@
+﻿table td {
+    width: 100px;
+}
+
+table td.hours {
+    /*тут можно прописать стили для ячеек с часами*/
+     border-width: 0px;
+    vertical-align: top;
+}
+
+table td.empty {
+     border-width: 0px;
+}
+
+table td.entry {
+    border: 1px black solid;
+    text-align: center;
+    background-color: lightcoral;
+}
+
+table {
+    border-spacing: 0px;
+}
