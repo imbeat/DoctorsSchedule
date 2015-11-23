@@ -17,7 +17,7 @@ namespace DoctorsSchedule.Controllers
 
         public HomeController()
         {
-            _scheduleProvider = new HardCodeScheduleProvider();
+            _scheduleProvider = new TextFileScheduleProvider();
         }
 
         public ActionResult Index()

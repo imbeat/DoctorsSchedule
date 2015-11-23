@@ -71,6 +71,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\TestData.txt" />
     <Content Include="Content\Schedule.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -83,6 +84,7 @@
     <Compile Include="Data\HardCodeScheduleProvider.cs" />
     <Compile Include="Data\IScheduleProvider.cs" />
     <Compile Include="Data\ScheduleEntry.cs" />
+    <Compile Include="Data\TextFileScheduleProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
